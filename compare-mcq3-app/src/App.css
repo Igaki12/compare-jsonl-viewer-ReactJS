@@ -139,8 +139,8 @@
   background: #f8f9ff;
   padding: 0;
   overflow: hidden;
-  flex: 1 1 240px;
-  max-width: 240px;
+  flex: 1 1 calc((1100px - (0.85rem * 2)) / 3);
+  max-width: calc((1100px - (0.85rem * 2)) / 3);
   transition:
     flex-basis 0.25s ease,
     box-shadow 0.2s ease,
@@ -149,8 +149,8 @@
 }
 
 .drawer[open] {
-  flex: 1 1 240px;
-  max-width: 240px;
+  flex: 1 1 calc((1100px - 0.85rem * 2) / 2);
+  max-width: calc((1100px - 0.85rem * 2) / 2);
   background: #ffffff;
   border-color: #c9cceb;
   box-shadow: 0 16px 30px rgba(18, 24, 72, 0.18);
