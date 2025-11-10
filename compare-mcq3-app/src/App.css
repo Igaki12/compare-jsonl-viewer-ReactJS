@@ -154,6 +154,8 @@
   background: #ffffff;
   border-color: #c9cceb;
   box-shadow: 0 16px 30px rgba(18, 24, 72, 0.18);
+  align-self: flex-start;
+  height: auto;
 }
 
 .drawer summary {
