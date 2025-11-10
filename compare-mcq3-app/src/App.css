@@ -139,7 +139,7 @@
   background: #f8f9ff;
   padding: 0;
   overflow: hidden;
-  flex: 1 1 300px;
+  flex: 1 0 300px;
   max-width: 300px;
   transition:
     flex-basis 0.25s ease,
@@ -149,7 +149,7 @@
 }
 
 .drawer[open] {
-  flex: 1 1 300px;
+  flex: 1 0 300px;
   max-width: 300px;
   background: #ffffff;
   border-color: #c9cceb;
