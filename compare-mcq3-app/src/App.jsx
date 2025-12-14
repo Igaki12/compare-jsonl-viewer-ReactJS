@@ -3,11 +3,11 @@ import promptMetadata from './data/mcq3SystemInstructions.json'
 import './App.css'
 
 const PAGE_SIZE = 10
-const TYPE_SOURCES = [
-  { typeId: '1', filename: 'news_mcq3_with_gemma3_type1_sample50.jsonl' },
-  { typeId: '7', filename: 'news_mcq3_with_gemma3_type7_sample50.jsonl' },
-  { typeId: '9', filename: 'news_mcq3_with_gemma3_type9_sample50.jsonl' }
-]
+const TYPE_IDS = Array.from({ length: 10 }, (_, index) => `${index + 1}`)
+const TYPE_SOURCES = TYPE_IDS.map((typeId) => ({
+  typeId,
+  filename: `news_mcq3_with_gemma3_type${typeId}_sample50.jsonl`
+}))
 const TYPE_PROMPT_INFO = promptMetadata?.types ?? {}
 
 const parseJsonl = (text) =>
@@ -148,7 +148,7 @@ function App() {
         })
 
         setArticles(mergedArticles)
-        setTypeOrder(TYPE_SOURCES.map(({ typeId }) => typeId))
+        setTypeOrder([...TYPE_IDS])
         setStatus('ready')
       } catch (error) {
         console.error(error)
@@ -166,7 +166,7 @@ function App() {
     return articles.slice(start, start + PAGE_SIZE)
   }, [articles, page])
 
-  const visibleTypes = typeOrder.length ? typeOrder : TYPE_SOURCES.map(({ typeId }) => typeId)
+  const visibleTypes = typeOrder.length ? typeOrder : TYPE_IDS
 
   const changePage = (nextPage) => {
     setPage(Math.min(Math.max(nextPage, 0), totalPages - 1))
@@ -177,9 +177,9 @@ function App() {
       <header className="hero">
         <div>
           <p className="eyebrow">MCQ3 Question Comparator</p>
-          <h1>ニュース記事と3タイプの理解度テストを横並びで比較</h1>
+          <h1>ニュース記事と10タイプの理解度テストを横並びで比較</h1>
           <p className="hero-text">
-            JSONLから抽出した各記事の共通情報と、type1・type7・type9で生成された理解度テストを
+            JSONLから抽出した各記事の共通情報と、type1~type10で生成された理解度テストを
             ドロワー形式で同時に開きながら比較できます（1ページ {PAGE_SIZE} 件表示）。
           </p>
         </div>

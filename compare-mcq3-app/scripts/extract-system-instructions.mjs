@@ -7,11 +7,12 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
 const repoRoot = path.resolve(projectRoot, '..');
 
-const TYPE_SOURCES = [
-  { typeId: '1', file: 'append_news_mcq3_with_gemma3_type1.py' },
-  { typeId: '7', file: 'append_news_mcq3_with_gemma3_type7.py' },
-  { typeId: '9', file: 'append_news_mcq3_with_gemma3_type9.py' },
-];
+const TYPE_IDS = Array.from({ length: 10 }, (_, index) => `${index + 1}`);
+
+const TYPE_SOURCES = TYPE_IDS.map((typeId) => ({
+  typeId,
+  file: path.join('..', 'jiji-compe2', `append_news_mcq3_with_gemma3_type${typeId}.py`),
+}));
 
 const readSystemInstructions = (sourceText) => {
   const match = sourceText.match(/SYSTEM_INSTRUCTIONS\s*=\s*\(([\s\S]*?)\)/);
